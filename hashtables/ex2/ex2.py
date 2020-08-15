@@ -5,10 +5,11 @@ class Ticket:
         self.destination = destination
 
 
+
 def reconstruct_trip(tickets, length):
-    """
-    YOUR CODE HERE
-    """
-    # Your code here
+    for ticket in tickets:
+        if ticket.destination == None:
+
+
 
     return route
