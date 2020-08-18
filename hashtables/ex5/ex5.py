@@ -1,35 +1,43 @@
-# Your code here
-
 
 def finder(files, queries):
-    # Your code here
     sep_dict = {}
     for path in files:
         separated = path.split("/")
-        if separated[-1] not in queries:
+
+        if separated[-1] not in path:
             continue
+        elif separated[-1] not in sep_dict:
+            sep_dict[separated[-1]] = [path]
         else:
-            if separated[-1] not in sep_dict:
-                else:
-                sep_dict[separated[-1]] = [path]
-            else:
-                sep_dict[separated[-1]].append(path)
+            sep_dict[separated[-1]].append(path)
+
 
     result = []
-    for v in sep_dict.values():
-        result.append(v)
+    for query in queries:
+        if query in sep_dict:
+            if len(sep_dict[query]) > 1:
+                result += sep_dict[query]
+            elif len(sep_dict[query]) < 1:
+                continue
+            else:
+                result += sep_dict[query]
+
     return result
 
 
 if __name__ == "__main__":
     files = [
         '/bin/foo',
+        '/bin',
         '/bin/bar',
         '/usr/bin/baz',
+        '/usr/bin/local/baz'
     ]
     queries = [
         "foo",
         "qux",
-        "baz"
+        "baz",
+        "nosuchfile.txt",
+        "hello_world"
     ]
     print(finder(files, queries))

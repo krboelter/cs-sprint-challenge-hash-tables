@@ -5,11 +5,26 @@ class Ticket:
         self.destination = destination
 
 
+def set_tickets(tickets):
+    tics = {}
+    for ticket in tickets:
+        tics[ticket.source] = ticket.destination
+
+    return tics
+
 
 def reconstruct_trip(tickets, length):
-    for ticket in tickets:
-        if ticket.destination == None:
+    tics = set_tickets(tickets)
 
+    next = tics["NONE"]
+    done = False
+    route = []
+    route.append(next)
+    while done is not True:
+        if tics[next] == "NONE":
+            done = True
 
+        route.append(tics[next])
+        next = tics[next]
 
     return route

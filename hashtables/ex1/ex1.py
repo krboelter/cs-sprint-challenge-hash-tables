@@ -1,16 +1,21 @@
 def get_indices_of_item_weights(weights, length, limit):
-    w_1 = {}
+    wait = {}
+    indecies = []
 
-    for weight in weights:
-        sums = []
-        for j in weights:
-            if weight == j:
-                continue
-            else:
-                print(sums)
-                print(weight, j)
-                w_1[weight] = sums.append(weight + j)
+    for index in range(len(weights)):
+        if weights[index] not in wait:
+            wait[weights[index]] = index
+        else:
+            wait[weights[index] + .1] = index
 
-    return None
+    print(4.1 % 4.1)
+    answers = []
+    for k, v in wait.items():
+        key = round(k, 0)
+        if (limit - key) in wait:
+            indecies.insert(0, v)
 
-get_indices_of_item_weights([1, 2, 5, 6, 7], 5, 3)
+    if len(indecies) < 1:
+        return None
+    else:
+        return indecies
